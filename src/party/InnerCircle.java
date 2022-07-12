@@ -17,12 +17,21 @@ public class InnerCircle {
             //Liefern des ersten Element aus queue und löschen aus der Queue
             Person current =queue.remove(); //beim 1 durchlauf = andy
 
+            //Wenn die gesuchte Distanz erreicht ist, interessieren mich die Nachbarn nicht mehr.
+            //Alternative: Alles reinspeichern un dann aussortieren
+if(distance.get(current)==level){
+    continue;
+}
             result.add(current);
             //in current friends. beim 1.durchlaug die freunde von andy gespiechert
             for(Person friend: current.friends){
+                //prüfer ob man Person schon besuchthat
+                if(result.contains(friend)){
+                    continue;  //geht weiter bei nächste element
+                }
                 queue.add(friend);
                 distance.put(friend, distance.get(current)+1);
-                
+
             }
 
         }
